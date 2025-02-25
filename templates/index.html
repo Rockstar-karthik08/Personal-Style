@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Personal Stylist</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">AI Personal Stylist</h1>
+
+        <div class="card shadow p-4">
+            <form method="POST" class="row g-3">
+                <div class="col-md-4">
+                    <label for="season" class="form-label">Season:</label>
+                    <select name="season" id="season" class="form-select">
+                        <option>Winter</option>
+                        <option>Summer</option>
+                        <option>Spring</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="occasion" class="form-label">Occasion:</label>
+                    <select name="occasion" id="occasion" class="form-select">
+                        <option>Formal</option>
+                        <option>Casual</option>
+                        <option>Sports</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="body_type" class="form-label">Body Type:</label>
+                    <select name="body_type" id="body_type" class="form-select">
+                        <option>Average</option>
+                        <option>Slender</option>
+                        <option>Athletic</option>
+                    </select>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg" id="recommend-btn">Get Recommendation</button>
+                </div>
+            </form>
+        </div>
+
+        {% if prediction %}
+        <div class="text-center mt-4">
+            <h2 class="fw-bold">Recommended Clothing: {{ prediction }}</h2>
+            <div class="image-container">
+                <img src="{{ image_url }}" alt="{{ prediction }}" class="img-fluid rounded shadow">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
